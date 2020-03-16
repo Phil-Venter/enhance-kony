@@ -1,23 +1,16 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const ui = require('./ui/_index');
-const utils = require('./utils/_index');
-
-module.exports = { ui, utils };
+exports.ui = require('./ui/_index');
+exports.utils = require('./utils/_index');
 
 },{"./ui/_index":2,"./utils/_index":4}],2:[function(require,module,exports){
-const { generateComponent } = require('./generateComponent');
-
-module.exports = { generateComponent };
+exports.generateComponent = require('./generateComponent');
 
 },{"./generateComponent":3}],3:[function(require,module,exports){
-const { isString } = require('../utils/isString');
-const { isObject } = require('../utils/isObject');
-const { isUndefined } = require('../utils/isUndefined');
-const { getType } = require('../utils/getType');
+const { isString, isObject, getType } = require('../utils/_index');
 
 const generateComponent = ((definition) => {
-  if (!isUndefined(kony)) {
-    if (!isObject(kony.utils)) {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.ui.generateComponent = definition;
@@ -25,9 +18,9 @@ const generateComponent = ((definition) => {
   return definition;
 })(function generateComponent(componentName, basicProperties, layoutProperties, platformSpecificProperties, additionalProperties) {
   try {
-    if (isUndefined(kony)) {
+    if (typeof kony === 'undefined') {
       throw new Error(`Kony SDK is required`);
-    } else if (isUndefined(kony.ui)) {
+    } else if (typeof kony.ui === 'undefined') {
       throw new Error(`UI API from Kony SDK is required`);
     } else if (!isString(componentName)) {
       throw new Error(`componentName was given the incorrect type; expected: 'string', got: '${getType(componentName)}'.`);
@@ -57,9 +50,9 @@ const generateComponent = ((definition) => {
 
     return component;
   } catch (error) {
-    if (isObject(kony)
-      && isObject(kony.constants)
-      && isString(kony.constants.RUNMODE)
+    if (typeof kony === 'object'
+      && typeof kony.constants === 'object'
+      && typeof kony.constants.RUNMODE === 'string'
       && kony.constants.RUNMODE === 'debug') {
       console.log(error);
     }
@@ -70,40 +63,41 @@ const generateComponent = ((definition) => {
 
 module.exports = { generateComponent };
 
-},{"../utils/getType":5,"../utils/isObject":14,"../utils/isString":16,"../utils/isUndefined":18}],4:[function(require,module,exports){
-const { getType } = require('./getType');
-const { isArray } = require('./isArray');
-const { isBoolean } = require('./isBoolean');
-const { isDate } = require('./isDate');
-const { isEmpty } = require('./isEmpty');
-const { isError } = require('./isError');
-const { isFunction } = require('./isFunction');
-const { isNull } = require('./isNull');
-const { isNumber } = require('./isNumber');
-const { isObject } = require('./isObject');
-const { isRegExp } = require('./isRegExp');
-const { isString } = require('./isString');
-const { isType } = require('./isType');
-const { isUndefined } = require('./isUndefined');
-
-module.exports = { getType, isArray, isBoolean, isDate, isEmpty, isError, isFunction, isNull, isNumber, isObject, isRegExp, isString, isType, isUndefined };
+},{"../utils/_index":4}],4:[function(require,module,exports){
+exports.getType = require('./getType');
+exports.isArray = require('./isArray');
+exports.isBoolean = require('./isBoolean');
+exports.isDate = require('./isDate');
+exports.isEmpty = require('./isEmpty');
+exports.isError = require('./isError');
+exports.isFunction = require('./isFunction');
+exports.isNull = require('./isNull');
+exports.isNumber = require('./isNumber');
+exports.isObject = require('./isObject');
+exports.isRegExp = require('./isRegExp');
+exports.isString = require('./isString');
+exports.isType = require('./isType');
+exports.isUndefined = require('./isUndefined');
 
 },{"./getType":5,"./isArray":6,"./isBoolean":7,"./isDate":8,"./isEmpty":9,"./isError":10,"./isFunction":11,"./isNull":12,"./isNumber":13,"./isObject":14,"./isRegExp":15,"./isString":16,"./isType":17,"./isUndefined":18}],5:[function(require,module,exports){
-const getType = ((definition) => {
-  kony.utils.getType = definition;
+exports.getType = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
+      kony.utils = {};
+    }
+    kony.utils.getType = definition;
+  }
   return definition;
 })(function getType(val) {
   return ({}).toString.call(val).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 });
 
-module.exports = { getType };
-
 },{}],6:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isArray = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isArray = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isArray = definition;
@@ -113,14 +107,12 @@ const isArray = ((definition) => {
   return getType(val) === 'array';
 });
 
-module.exports = { isArray };
-
 },{"./getType":5}],7:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isBoolean = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isBoolean = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isBoolean = definition;
@@ -130,14 +122,12 @@ const isBoolean = ((definition) => {
   return getType(val) === 'boolean';
 });
 
-module.exports = { isBoolean };
-
 },{"./getType":5}],8:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isDate = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isDate = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isDate = definition;
@@ -147,14 +137,12 @@ const isDate = ((definition) => {
   return getType(val) === 'date';
 });
 
-module.exports = { isDate };
-
 },{"./getType":5}],9:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isEmpty = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isEmpty = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isEmpty = definition;
@@ -168,14 +156,12 @@ const isEmpty = ((definition) => {
   return !val;
 });
 
-module.exports = { isEmpty };
-
 },{"./getType":5}],10:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isError = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isError = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isError = definition;
@@ -185,14 +171,12 @@ const isError = ((definition) => {
   return getType(val) === 'error';
 });
 
-module.exports = { isError };
-
 },{"./getType":5}],11:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isFunction = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isFunction = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isFunction = definition;
@@ -202,14 +186,12 @@ const isFunction = ((definition) => {
   return getType(val) === 'function';
 });
 
-module.exports = { isFunction };
-
 },{"./getType":5}],12:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isNull = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isNull = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isNull = definition;
@@ -219,14 +201,12 @@ const isNull = ((definition) => {
   return getType(val) === 'null';
 });
 
-module.exports = { isNull };
-
 },{"./getType":5}],13:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isNumber = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isNumber = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isNumber = definition;
@@ -236,14 +216,12 @@ const isNumber = ((definition) => {
   return getType(val) === 'number';
 });
 
-module.exports = { isNumber };
-
 },{"./getType":5}],14:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isObject = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isObject = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isObject = definition;
@@ -253,14 +231,12 @@ const isObject = ((definition) => {
   return getType(val) === 'object';
 });
 
-module.exports = { isObject };
-
 },{"./getType":5}],15:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isRegExp = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isRegExp = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isRegExp = definition;
@@ -270,14 +246,12 @@ const isRegExp = ((definition) => {
   return getType(val) === 'regexp';
 });
 
-module.exports = { isRegExp };
-
 },{"./getType":5}],16:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isString = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isString = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isString = definition;
@@ -287,14 +261,12 @@ const isString = ((definition) => {
   return getType(val) === 'string';
 });
 
-module.exports = { isString };
-
 },{"./getType":5}],17:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isType = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isType = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isType = definition;
@@ -307,14 +279,12 @@ const isType = ((definition) => {
   return false;
 });
 
-module.exports = { isType };
-
 },{"./getType":5}],18:[function(require,module,exports){
 const { getType } = require('./getType');
 
-const isUndefined = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isUndefined = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isUndefined = definition;
@@ -323,7 +293,5 @@ const isUndefined = ((definition) => {
 })(function isUndefined(val) {
   return getType(val) === 'undefined';
 });
-
-module.exports = { isUndefined };
 
 },{"./getType":5}]},{},[1]);
