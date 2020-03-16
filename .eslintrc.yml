@@ -209,7 +209,7 @@ rules:
     - error
     - always
   object-shorthand: error
-  one-var: error
+  one-var: 'off'
   one-var-declaration-per-line: error
   operator-assignment: error
   operator-linebreak:

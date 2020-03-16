@@ -3,22 +3,26 @@
   "version": "1.0.0",
   "description": "A simple collection of functionality for the Kony SDK. I personally use this and [Krōnin](https://github.com/mig82/kronin) by [Miguelángel Fernández](https://github.com/mig82).",
   "scripts": {
-    "compile": "npx webpack"
+    "build": "rm -r bin; mkdir bin; browserify ./src/main.js > ./bin/main.js",
+    "shrink": "rm -r bin; mkdir bin; browserify -p tinyify ./src/main.js > ./bin/main.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Phil-Venter/enhance-kony.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "kony",
+    "enhance"
+  ],
+  "author": "Philip Venter",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Phil-Venter/enhance-kony/issues"
   },
   "homepage": "https://github.com/Phil-Venter/enhance-kony#readme",
   "devDependencies": {
+    "browserify": "^16.5.0",
     "eslint": "^6.8.0",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
+    "tinyify": "^2.5.2"
   }
 }
