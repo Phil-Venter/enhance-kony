@@ -1,8 +1,8 @@
 const { getType } = require('./getType');
 
-const isString = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isString = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isString = definition;
@@ -11,5 +11,3 @@ const isString = ((definition) => {
 })(function isString(val) {
   return getType(val) === 'string';
 });
-
-module.exports = { isString };

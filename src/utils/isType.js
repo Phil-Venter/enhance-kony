@@ -1,8 +1,8 @@
 const { getType } = require('./getType');
 
-const isType = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isType = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isType = definition;
@@ -14,5 +14,3 @@ const isType = ((definition) => {
   }
   return false;
 });
-
-module.exports = { isType };

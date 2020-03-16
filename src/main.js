@@ -1,4 +1,2 @@
-const ui = require('./ui/_index');
-const utils = require('./utils/_index');
-
-module.exports = { ui, utils };
+exports.ui = require('./ui/_index');
+exports.utils = require('./utils/_index');

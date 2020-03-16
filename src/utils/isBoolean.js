@@ -1,8 +1,8 @@
 const { getType } = require('./getType');
 
-const isBoolean = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isBoolean = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isBoolean = definition;
@@ -11,5 +11,3 @@ const isBoolean = ((definition) => {
 })(function isBoolean(val) {
   return getType(val) === 'boolean';
 });
-
-module.exports = { isBoolean };

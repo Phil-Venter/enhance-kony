@@ -1,8 +1,8 @@
 const { getType } = require('./getType');
 
-const isArray = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isArray = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isArray = definition;
@@ -11,5 +11,3 @@ const isArray = ((definition) => {
 })(function isArray(val) {
   return getType(val) === 'array';
 });
-
-module.exports = { isArray };

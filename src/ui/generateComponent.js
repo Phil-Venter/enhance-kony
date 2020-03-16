@@ -1,11 +1,8 @@
-const { isString } = require('../utils/isString');
-const { isObject } = require('../utils/isObject');
-const { isUndefined } = require('../utils/isUndefined');
-const { getType } = require('../utils/getType');
+const { isString, isObject, getType } = require('../utils/_index');
 
 const generateComponent = ((definition) => {
-  if (!isUndefined(kony)) {
-    if (!isObject(kony.utils)) {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.ui.generateComponent = definition;
@@ -13,9 +10,9 @@ const generateComponent = ((definition) => {
   return definition;
 })(function generateComponent(componentName, basicProperties, layoutProperties, platformSpecificProperties, additionalProperties) {
   try {
-    if (isUndefined(kony)) {
+    if (typeof kony === 'undefined') {
       throw new Error(`Kony SDK is required`);
-    } else if (isUndefined(kony.ui)) {
+    } else if (typeof kony.ui === 'undefined') {
       throw new Error(`UI API from Kony SDK is required`);
     } else if (!isString(componentName)) {
       throw new Error(`componentName was given the incorrect type; expected: 'string', got: '${getType(componentName)}'.`);
@@ -45,9 +42,9 @@ const generateComponent = ((definition) => {
 
     return component;
   } catch (error) {
-    if (isObject(kony)
-      && isObject(kony.constants)
-      && isString(kony.constants.RUNMODE)
+    if (typeof kony === 'object'
+      && typeof kony.constants === 'object'
+      && typeof kony.constants.RUNMODE === 'string'
       && kony.constants.RUNMODE === 'debug') {
       console.log(error);
     }

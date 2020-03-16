@@ -1,8 +1,8 @@
 const { getType } = require('./getType');
 
-const isEmpty = ((definition) => {
-  if (getType(kony) !== 'undefined') {
-    if (getType(kony.utils) !== 'object') {
+exports.isEmpty = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
       kony.utils = {};
     }
     kony.utils.isEmpty = definition;
@@ -15,5 +15,3 @@ const isEmpty = ((definition) => {
 
   return !val;
 });
-
-module.exports = { isEmpty };

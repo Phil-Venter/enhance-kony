@@ -1,3 +1,1 @@
-const { generateComponent } = require('./generateComponent');
-
-module.exports = { generateComponent };
+exports.generateComponent = require('./generateComponent');
