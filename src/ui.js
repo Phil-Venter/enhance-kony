@@ -43,7 +43,6 @@ require('./utils');
 
       return component;
     } catch (error) {
-      console.error(error);
       return null;
     }
   }

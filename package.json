@@ -1,0 +1,24 @@
+{
+  "name": "enhance-kony",
+  "version": "1.0.0",
+  "description": "A simple collection of functionality for the Kony SDK. I personally use this and [Krōnin](https://github.com/mig82/kronin) by [Miguelángel Fernández](https://github.com/mig82).",
+  "scripts": {
+    "compile": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phil-Venter/enhance-kony.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phil-Venter/enhance-kony/issues"
+  },
+  "homepage": "https://github.com/Phil-Venter/enhance-kony#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
