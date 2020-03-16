@@ -2,7 +2,6 @@
 A simple collection of functionality for the Kony SDK. I personally use this and [Krōnin](https://github.com/mig82/kronin) by [Miguelángel Fernández](https://github.com/mig82).
 
 ## ```kony.ui```
----
 ### ```generateComponent(string, object, object, object, object)```
 #### returns: object
 A function that generates components much like calling ```kony.ui.<component name here>(...)``` would.
@@ -24,7 +23,6 @@ const btn = kony.ui.generateComponent('Button', ..., {
 In the end it boils down to preference...
 
 ## ```kony.utils```
----
 ### ```getType(any)```
 #### returns: string
 typeof is very limited in its use some might even call it broken, Angus Croll is one of them [read more](https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/). This uses his code that aims to fix that issue.
