@@ -27,6 +27,7 @@ rules:
   brace-style:
     - error
     - 1tbs
+    - allowSingleLine: true
   callback-return: error
   camelcase: error
   capitalized-comments:
@@ -45,7 +46,7 @@ rules:
     - never
   consistent-return: error
   consistent-this: error
-  curly: 'off'
+  curly: 'error'
   default-case: error
   default-param-last: error
   dot-location:

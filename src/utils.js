@@ -38,7 +38,10 @@
 
   // returns bool value, if empty true else false
   function isEmpty(val) {
-    if (type(val) === 'string') val.trim();
+    if (type(val) === 'string') {
+      val.trim();
+    }
+
     return !val;
   }
 
