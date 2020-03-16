@@ -3,11 +3,6 @@ A simple collection of functionality for the Kony SDK. I personally use this and
 
 ## ```kony.ui```
 ---
-### ```components```
-An object of all valid components in the Kony SDK, generated from the kony.ui object.
-This is used internally in ```kony.ui.generateComponent(...)``` to ensure only valid components can be generated.
-This can also be used to ensure only valid component names are passed to ```kony.ui.generateComponent(...)```.
-
 ### ```generateComponent(string, object, object, object, object)```
 #### returns: object
 A function that generates components much like calling ```kony.ui.<component name here>(...)``` would.
@@ -30,7 +25,7 @@ In the end it boils down to preference...
 
 ## ```kony.utils```
 ---
-### ```type(any)```
+### ```getType(any)```
 #### returns: string
 typeof is very limited in its use some might even call it broken, Angus Croll is one of them [read more](https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/). This uses his code that aims to fix that issue.
 ```
@@ -45,62 +40,66 @@ typeof new Number(4); //"object"
 typeof new String("abc"); //"object"
 typeof new Boolean(true); //"object"
 
-kony.utils.type({a: 4}); //"object"
-kony.utils.type([1, 2, 3]); //"array"
-kony.utils.type(new ReferenceError); //"error"
-kony.utils.type(new Date); //"date"
-kony.utils.type(/a-z/); //"regexp"
-kony.utils.type(Math); //"math"
-kony.utils.type(JSON); //"json"
-kony.utils.type(new Number(4)); //"number"
-kony.utils.type(new String("abc")); //"string"
-kony.utils.type(new Boolean(true)); //"boolean"
+kony.utils.getType({a: 4}); //"object"
+kony.utils.getType([1, 2, 3]); //"array"
+kony.utils.getType(new ReferenceError); //"error"
+kony.utils.getType(new Date); //"date"
+kony.utils.getType(/a-z/); //"regexp"
+kony.utils.getType(Math); //"math"
+kony.utils.getType(JSON); //"json"
+kony.utils.getType(new Number(4)); //"number"
+kony.utils.getType(new String("abc")); //"string"
+kony.utils.getType(new Boolean(true)); //"boolean"
 ```
-
-### ```isString(any)```
-#### returns: boolean
-checks to see if passed variable is a string, uses ```kony.utils.type(...)``` internally.
-
-### ```isNumber(any)```
-#### returns: boolean
-checks to see if passed variable is a number, uses ```kony.utils.type(...)``` internally.
-
-### ```isBoolean(any)```
-#### returns: boolean
-checks to see if passed variable is a boolean, uses ```kony.utils.type(...)``` internally.
 
 ### ```isArray(any)```
 #### returns: boolean
-checks to see if passed variable is an array, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is an array, uses ```kony.utils.getType(...)``` internally.
 
-### ```isFunction(any)```
+### ```isBoolean(any)```
 #### returns: boolean
-checks to see if passed variable is a function, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is a boolean, uses ```kony.utils.getType(...)``` internally.
 
-### ```isObject(any)```
+### ```isDate(any)```
 #### returns: boolean
-checks to see if passed variable is an object, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is a date instance, uses ```kony.utils.getType(...)``` internally.
 
 ### ```isEmpty(any)```
 #### returns: boolean
 checks to see if passed variable is empty (falsey).
 
+### ```isError(any)```
+#### returns: boolean
+checks to see if passed variable is an error instance, uses ```kony.utils.getType(...)``` internally.
+
+### ```isFunction(any)```
+#### returns: boolean
+checks to see if passed variable is a function, uses ```kony.utils.getType(...)``` internally.
+
 ### ```isNull(any)```
 #### returns: boolean
-checks to see if passed variable is null, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is null, uses ```kony.utils.getType(...)``` internally.
 
-### ```isUndefined(any)```
+### ```isNumber(any)```
 #### returns: boolean
-checks to see if passed variable is undefined, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is a number, uses ```kony.utils.getType(...)``` internally.
+
+### ```isObject(any)```
+#### returns: boolean
+checks to see if passed variable is an object, uses ```kony.utils.getType(...)``` internally.
 
 ### ```isRegExp(any)```
 #### returns: boolean
-checks to see if passed variable is a regular expression instance, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is a regular expression instance, uses ```kony.utils.getType(...)``` internally.
 
-### ```isError(any)```
+### ```isString(any)```
 #### returns: boolean
-checks to see if passed variable is an error instance, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is a string, uses ```kony.utils.getType(...)``` internally.
 
-### ```isDate(any)```
+### ```isType(any, string)```
 #### returns: boolean
-checks to see if passed variable is a date instance, uses ```kony.utils.type(...)``` internally.
+checks to see if passed variable is of type passed, uses ```kony.utils.getType(...)``` internally.
+
+### ```isUndefined(any)```
+#### returns: boolean
+checks to see if passed variable is undefined, uses ```kony.utils.getType(...)``` internally.
