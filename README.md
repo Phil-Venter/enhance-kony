@@ -2,6 +2,18 @@
 A simple collection of functionality for the Kony SDK. I personally use this and [Krōnin](https://github.com/mig82/kronin) by [Miguelángel Fernández](https://github.com/mig82).
 
 ## ```kony.ui```
+### ```fontAwesome```
+#### returns: object
+An object that contains "The complete set of 675 icons in Font Awesome 4.7.0" found [here](https://fontawesome.com/v4.7.0/icons/)
+
+Accessing it is relatively easy
+```
+// access fa-user-circle icon
+kony.ui.fontAwesome['fa-user-circle']
+// access fa-sitemap icon
+kony.ui.fontAwesome['fa-sitemap']
+```
+
 ### ```generateComponent(string, object, object, object, object)```
 #### returns: object
 A function that generates components much like calling ```kony.ui.<component name here>(...)``` would.
