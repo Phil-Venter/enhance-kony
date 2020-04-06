@@ -114,6 +114,15 @@ checks to see if passed variable is of type passed, uses ```kony.utils.getType(.
 #### returns: boolean
 checks to see if passed variable is undefined, uses ```kony.utils.getType(...)``` internally.
 
+### ```prePad(any, string)```
+#### returns: string
+uses the second parameter as a template and prepends that to the first parameter, used internally in ```kony.utils.transformDate(...)```.
+```
+prePad(1, '0000') // '0001'
+prePad('hello', '0000') // 'hello'
+prePad('hello', '000000') // '0hello'
+```
+
 ### ```transformDate(date)```
 #### returns: string
 converts the passed date object to the format used by MSSQL as it differs slightly from ```Date.prototype.toISOString()``` the ISO 8601 Extended Format JavaScript follows.
