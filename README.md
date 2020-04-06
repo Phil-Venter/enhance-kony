@@ -113,3 +113,7 @@ checks to see if passed variable is of type passed, uses ```kony.utils.getType(.
 ### ```isUndefined(any)```
 #### returns: boolean
 checks to see if passed variable is undefined, uses ```kony.utils.getType(...)``` internally.
+
+### ```transformDate(date)```
+#### returns: string
+converts the passed date object to the format used by MSSQL as it differs slightly from ```Date.prototype.toISOString()``` the ISO 8601 Extended Format JavaScript follows.

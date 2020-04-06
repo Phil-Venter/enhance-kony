@@ -12,3 +12,4 @@ exports.isRegExp = require('./isRegExp');
 exports.isString = require('./isString');
 exports.isType = require('./isType');
 exports.isUndefined = require('./isUndefined');
+exports.transformDate = require('./transformDate');
