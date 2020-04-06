@@ -871,9 +871,10 @@ exports.isRegExp = require('./isRegExp');
 exports.isString = require('./isString');
 exports.isType = require('./isType');
 exports.isUndefined = require('./isUndefined');
+exports.prePad = require('./prePad');
 exports.transformDate = require('./transformDate');
 
-},{"./getType":6,"./isArray":7,"./isBoolean":8,"./isDate":9,"./isEmpty":10,"./isError":11,"./isFunction":12,"./isNull":13,"./isNumber":14,"./isObject":15,"./isRegExp":16,"./isString":17,"./isType":18,"./isUndefined":19,"./transformDate":20}],6:[function(require,module,exports){
+},{"./getType":6,"./isArray":7,"./isBoolean":8,"./isDate":9,"./isEmpty":10,"./isError":11,"./isFunction":12,"./isNull":13,"./isNumber":14,"./isObject":15,"./isRegExp":16,"./isString":17,"./isType":18,"./isUndefined":19,"./prePad":20,"./transformDate":21}],6:[function(require,module,exports){
 exports.getType = ((definition) => {
   if (typeof kony !== 'undefined') {
     if (typeof kony.utils !== 'object') {
@@ -1089,7 +1090,21 @@ exports.isUndefined = ((definition) => {
 });
 
 },{"./getType":6}],20:[function(require,module,exports){
+exports.prePad = ((definition) => {
+  if (typeof kony !== 'undefined') {
+    if (typeof kony.utils !== 'object') {
+      kony.utils = {};
+    }
+    kony.utils.prePad = definition;
+  }
+  return definition;
+})(function prePad(str, pad) {
+  return pad.substring(0, pad.length - String(str).length) + str;
+});
+
+},{}],21:[function(require,module,exports){
 const { getType } = require('./getType');
+const { prePad } = require('./prePad');
 
 exports.transformDate = ((definition) => {
   if (typeof kony !== 'undefined') {
@@ -1100,20 +1115,16 @@ exports.transformDate = ((definition) => {
   }
   return definition;
 })(function transformDate(object) {
-  function pad(str, pad) {
-    return pad.substring(0, pad.length - String(str).length) + str;
-  }
-
   if (getType(object) !== 'date') {
     return null;
   }
 
-  return `${pad(object.getFullYear(), '0000')}-${
-    pad(object.getMonth() + 1, '00')}-${
-    pad(object.getDate(), '00')}T${
-    pad(object.getHours(), '00')}:${
-    pad(object.getMinutes(), '00')}:${
-    pad(object.getSeconds(), '00')}Z`;
+  return `${prePad(object.getFullYear(), '0000')}-${
+    prePad(object.getMonth() + 1, '00')}-${
+    prePad(object.getDate(), '00')}T${
+    prePad(object.getHours(), '00')}:${
+    prePad(object.getMinutes(), '00')}:${
+    prePad(object.getSeconds(), '00')}Z`;
 });
 
-},{"./getType":6}]},{},[1]);
+},{"./getType":6,"./prePad":20}]},{},[1]);
