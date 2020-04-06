@@ -1,4 +1,5 @@
 const { getType } = require('./getType');
+const { prePad } = require('./prePad');
 
 exports.transformDate = ((definition) => {
   if (typeof kony !== 'undefined') {
@@ -9,18 +10,14 @@ exports.transformDate = ((definition) => {
   }
   return definition;
 })(function transformDate(object) {
-  function pad(str, pad) {
-    return pad.substring(0, pad.length - String(str).length) + str;
-  }
-
   if (getType(object) !== 'date') {
     return null;
   }
 
-  return `${pad(object.getFullYear(), '0000')}-${
-    pad(object.getMonth() + 1, '00')}-${
-    pad(object.getDate(), '00')}T${
-    pad(object.getHours(), '00')}:${
-    pad(object.getMinutes(), '00')}:${
-    pad(object.getSeconds(), '00')}Z`;
+  return `${prePad(object.getFullYear(), '0000')}-${
+    prePad(object.getMonth() + 1, '00')}-${
+    prePad(object.getDate(), '00')}T${
+    prePad(object.getHours(), '00')}:${
+    prePad(object.getMinutes(), '00')}:${
+    prePad(object.getSeconds(), '00')}Z`;
 });

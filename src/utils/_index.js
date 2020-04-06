@@ -12,4 +12,5 @@ exports.isRegExp = require('./isRegExp');
 exports.isString = require('./isString');
 exports.isType = require('./isType');
 exports.isUndefined = require('./isUndefined');
+exports.prePad = require('./prePad');
 exports.transformDate = require('./transformDate');
